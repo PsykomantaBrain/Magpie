@@ -14,6 +14,7 @@ enum class MultiMonitorUsage {
 	Closest,
 	Intersected,
 	All,
+	CustomRect,
 };
 
 enum class CursorInterpolationMode {

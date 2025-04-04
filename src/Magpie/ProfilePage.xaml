@@ -208,6 +208,7 @@
 						<ComboBoxItem x:Uid="Profile_General_Multimonitor_Closest" />
 						<ComboBoxItem x:Uid="Profile_General_Multimonitor_Intersected" />
 						<ComboBoxItem x:Uid="Profile_General_Multimonitor_All" />
+						<ComboBoxItem x:Uid="Profile_General_Multimonitor_Custom" />
 					</ComboBox>
 				</local:SettingsCard>
 			</local:SettingsGroup>
