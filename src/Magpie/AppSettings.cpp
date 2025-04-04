@@ -87,6 +87,18 @@ static void WriteProfile(rapidjson::PrettyWriter<rapidjson::StringBuffer>& write
 	writer.Key("multiMonitorUsage");
 	writer.Uint((uint32_t)profile.multiMonitorUsage);
 
+	writer.Key("customRect");
+	writer.StartObject();
+	writer.Key("x");
+	writer.Int(profile.customRect.x);
+	writer.Key("y");
+	writer.Int(profile.customRect.y);
+	writer.Key("width");
+	writer.Int(profile.customRect.width);
+	writer.Key("height");
+	writer.Int(profile.customRect.height);
+	writer.EndObject();
+
 	writer.Key("graphicsCardId");
 	writer.StartObject();
 	writer.Key("idx");
@@ -791,10 +803,26 @@ bool AppSettings::_LoadProfile(
 	{
 		uint32_t multiMonitorUsage = (uint32_t)MultiMonitorUsage::Closest;
 		JsonHelper::ReadUInt(profileObj, "multiMonitorUsage", multiMonitorUsage);
-		if (multiMonitorUsage > 2) {
+		if (multiMonitorUsage > 3) {
 			multiMonitorUsage = (uint32_t)MultiMonitorUsage::Closest;
 		}
 		profile.multiMonitorUsage = (MultiMonitorUsage)multiMonitorUsage;
+
+		auto customRectNode = profileObj.FindMember("customRect");
+		if (customRectNode != profileObj.MemberEnd() && customRectNode->value.IsObject()) {
+			const auto& customRectObj = customRectNode->value.GetObj();
+
+			if (!JsonHelper::ReadInt(customRectObj, "x", profile.customRect.x, true)
+				|| !JsonHelper::ReadInt(customRectObj, "y", profile.customRect.y, true)
+				|| !JsonHelper::ReadInt(customRectObj, "width", profile.customRect.width, true)
+				|| profile.customRect.width < 0
+				|| !JsonHelper::ReadInt(customRectObj, "height", profile.customRect.height, true)
+				|| profile.customRect.height < 0
+				) {
+				profile.customRect = {};
+			}
+		}
+		
 	}
 	
 	{

@@ -17,6 +17,15 @@ enum class MultiMonitorUsage {
 	CustomRect,
 };
 
+struct CustomRect 
+{
+	int x = 0;
+	int y = 0;
+	int width = 0;
+	int height = 0;
+};
+
+
 enum class CursorInterpolationMode {
 	NearestNeighbor,
 	Bilinear,
@@ -120,6 +129,7 @@ struct ScalingOptions {
 	float cursorScaling = 1.0f;
 	CaptureMethod captureMethod = CaptureMethod::GraphicsCapture;
 	MultiMonitorUsage multiMonitorUsage = MultiMonitorUsage::Closest;
+	CustomRect customRect{};
 	CursorInterpolationMode cursorInterpolationMode = CursorInterpolationMode::NearestNeighbor;
 	DuplicateFrameDetectionMode duplicateFrameDetectionMode = DuplicateFrameDetectionMode::Dynamic;
 };

@@ -298,6 +298,7 @@ void ScalingService::_StartScale(HWND hWnd, const Profile& profile, bool windowe
 		options.maxFrameRate = profile.maxFrameRate;
 	}
 	options.multiMonitorUsage = profile.multiMonitorUsage;
+	options.customRect = profile.customRect;
 	options.cursorInterpolationMode = profile.cursorInterpolationMode;
 	options.flags = profile.scalingFlags;
 

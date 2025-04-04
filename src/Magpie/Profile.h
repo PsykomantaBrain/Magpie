@@ -25,6 +25,8 @@ struct Profile {
 		graphicsCardId = other.graphicsCardId;
 		maxFrameRate = other.maxFrameRate;
 		multiMonitorUsage = other.multiMonitorUsage;
+		customRect = other.customRect;
+
 		cursorInterpolationMode = other.cursorInterpolationMode;
 		launchParameters = other.launchParameters;
 		scalingFlags = other.scalingFlags;
@@ -58,6 +60,7 @@ struct Profile {
 	CaptureMethod captureMethod = CaptureMethod::GraphicsCapture;
 	GraphicsCardId graphicsCardId;
 	MultiMonitorUsage multiMonitorUsage = MultiMonitorUsage::Closest;
+	CustomRect customRect{};
 	CursorInterpolationMode cursorInterpolationMode = CursorInterpolationMode::NearestNeighbor;
 
 	// 10~1000

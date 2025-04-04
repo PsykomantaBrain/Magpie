@@ -1376,12 +1376,17 @@ ScalingError ScalingWindow::_CalcFullscreenSwapChainRect(uint32_t& monitorCount)
 	}
 	case MultiMonitorUsage::CustomRect:
 	{
-		if (ScalingError error = _MoveSrcWindowIfNecessary(); error != ScalingError::NoError) {
-			return error;
-		}
-
-		// hardcode it for now
-		_rendererRect = { -1215, 0, 6270, 2160 };
+		//if (ScalingError error = _MoveSrcWindowIfNecessary(); error != ScalingError::NoError) {
+		//	return error;
+		//}
+			
+		_rendererRect = 
+		{ 
+			_options.customRect.x,
+			_options.customRect.y,
+			_options.customRect.width + _options.customRect.x,
+			_options.customRect.height + _options.customRect.y
+		};
 
 		monitorCount = GetSystemMetrics(SM_CMONITORS); // this is only used to determine whether to maximize the window. it doesn't need to match the actual number of monitors we are taking up.
 		return ScalingError::NoError;
